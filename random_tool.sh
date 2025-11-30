@@ -48,7 +48,15 @@ random_password() {
 }
 
 coin_toss() {
-  echo "[TODO] 동전 던지기 기능은 다음 브랜치에서 구현 예정입니다."
+  echo
+  # 0 또는 1 랜덤 생성
+  result=$((RANDOM % 2))
+  
+  if [ "$result" -eq 0 ]; then
+    echo "결과: 앞면"
+  else
+    echo "결과: 뒷면"
+  fi
 }
 
 dice_roll() {
