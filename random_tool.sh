@@ -20,7 +20,31 @@ random_number() {
 }
 
 random_password() {
-  echo "[TODO] 랜덤 비밀번호 생성 기능은 다음 브랜치에서 구현 예정입니다."
+  echo
+  read -p "비밀번호 길이를 입력하세요 (기본값: 12): " length
+  
+  # 기본값 설정
+  if [ -z "$length" ]; then
+    length=12
+  fi
+  
+  # 입력값 검증
+  if ! [[ "$length" =~ ^[0-9]+$ ]] || [ "$length" -le 0 ]; then
+    echo "오류: 양의 정수만 입력 가능합니다."
+    return
+  fi
+  
+  # 문자 세트 정의
+  chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*"
+  
+  # 랜덤 비밀번호 생성
+  password=""
+  for ((i=0; i<length; i++)); do
+    random_index=$((RANDOM % ${#chars}))
+    password="${password}${chars:$random_index:1}"
+  done
+  
+  echo "생성된 비밀번호: $password"
 }
 
 coin_toss() {
