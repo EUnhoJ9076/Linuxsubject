@@ -80,8 +80,12 @@ roll_dice() {
     echo "주사위: $((RANDOM % 6 + 1))"
 }
 
-lotto_number() {
-  echo "[TODO] 로또 번호 생성 기능은 다음 브랜치에서 구현 예정입니다."
+lotto() {
+    echo "로또 번호(1~45):"
+    for i in {1..6}; do
+        echo -n "$((RANDOM % 45 + 1))"
+    done
+    echo 
 }
 
 # ===== 메인 루프 =====
@@ -93,8 +97,8 @@ while true; do
     1) random_number ;;
     2) random_password ;;
     3) coin_toss ;;
-    4) dice_roll ;;
-    5) lotto_number ;;
+    4) roll_dice ;;
+    5) lotto ;;
     0) echo "프로그램을 종료합니다."; exit 0 ;;
     *) echo "잘못된 입력입니다. 0~5 중에서 선택하세요." ;;
   esac
