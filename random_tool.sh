@@ -16,7 +16,24 @@ show_menu() {
 
 # ===== 기능 함수 (초기엔 TODO) =====
 random_number() {
-  echo "[TODO] 랜덤 숫자 생성 기능은 다음 브랜치에서 구현 예정입니다."
+  echo
+  read -p "최소값을 입력하세요: " min
+  read -p "최대값을 입력하세요: " max
+  
+  # 입력값 검증
+  if ! [[ "$min" =~ ^[0-9]+$ ]] || ! [[ "$max" =~ ^[0-9]+$ ]]; then
+    echo "오류: 숫자만 입력 가능합니다."
+    return
+  fi
+  
+  if [ "$min" -gt "$max" ]; then
+    echo "오류: 최소값이 최대값보다 클 수 없습니다."
+    return
+  fi
+  
+  # 랜덤 숫자 생성
+  random=$((RANDOM % (max - min + 1) + min))
+  echo "생성된 랜덤 숫자: $random"
 }
 
 random_password() {
