@@ -76,8 +76,8 @@ coin_toss() {
   fi
 }
 
-dice_roll() {
-  echo "[TODO] 주사위 굴리기 기능은 다음 브랜치에서 구현 예정입니다."
+roll_dice() {
+    echo "주사위: $((RANDOM % 6 + 1))"
 }
 
 lotto_number() {
